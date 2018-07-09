@@ -51,6 +51,16 @@ Distances$counts #of geodecis
 table( Distances$gdist[ lower.tri(Distances$gdist)] ) #To tabulate:
 plot(table( Distances$gdist[ lower.tri(Distances$gdist) ] ) ) #Plot
 
+#Triad (SNA used mode ='graph' OR 'di-graph' where Network uses T/F for directed.)
+#For any three nodes in the network, it can either have 0-3 ties.
+tricen <- triad.census(HighNet) #not telling the function that it's undirected
+tricen <- triad.census(HighNet, mode='graph')
+tricen[4]*3/(tricen[3]+3*(tricen[4])) #calculate the density of triads, roughly 63%
+gtrans(HighNet) #easy function to compute above
+
+#Dyad Census
+dyad.census(HighNet) #not interesting since undirected
+
 ###############################
 # Zachary Example
 ###############################
@@ -65,3 +75,18 @@ plot(table(rowSums(Zachary)),ylab='') #Plotting degree distribution:
 
 gden(aNet) 
 
+
+###############################
+# s-50 data set Example
+###############################
+#Read in data and convert to matrix format
+friend.data.w1 <- read.table("./Data/s50-network1.dat")
+friendMat <- as.matrix(friend.data.w1)
+
+plot(as.network(friendMat)) #Plotting network
+
+#Calculate the ‘dyad census’
+#Adding up the total number gives the number of directed pairs
+#Transitive vs Cyclical traids
+dyad.census(friendMat)
+triad.census(friendMat) #Holland & Lienhart -> U=Up D=Down T=Transitive C=Cyclical
