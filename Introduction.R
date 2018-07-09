@@ -19,7 +19,7 @@ install_package(c(
 ))
 
 #Read in data:
-HighTribe <- read.table('RedHighlandTribes.txt')
+HighTribe <- read.table('./Data/RedHighlandTribes.txt')
 HighTribePos <- HighTribe[1:16,]
 rowSums(HighTribePos) #Nodal degrees
 table(rowSums(HighTribePos)) #Degree distribution
