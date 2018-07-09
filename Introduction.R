@@ -90,3 +90,18 @@ plot(as.network(friendMat)) #Plotting network
 #Transitive vs Cyclical traids
 dyad.census(friendMat)
 triad.census(friendMat) #Holland & Lienhart -> U=Up D=Down T=Transitive C=Cyclical
+gden(friendMat)
+plot(table(colSums(friendMat))) #in-degree distribution
+
+#Create a random graph
+g <- rgraph(50) #Not a meaninful comparison if it's exactly random, might be worth having same # of nodes and density
+g <-rgraph(50, tprob= gden(friendMat))
+class(g) #it's a matrix!
+plot(as.network(g))
+dyad.census(g)
+triad.census(g)
+gden(g)
+plot(table(colSums(g))) #in-degree distribution
+
+par(mfrow=c(1,2))
+
