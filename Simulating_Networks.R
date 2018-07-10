@@ -17,7 +17,8 @@ install_package(c(
   "data.table",
   "RSiena",
   "network",
-  "sna"
+  "sna",
+  "ergm"
 ))
 
 
