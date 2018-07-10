@@ -19,7 +19,8 @@ install_package(c(
   "RSiena",
   "network",
   "sna",
-  'devtools'
+  'devtools',
+  'ergm'
 ))
 
 ###############################
