@@ -103,5 +103,3 @@ triad.census(g)
 gden(g)
 plot(table(colSums(g))) #in-degree distribution
 
-par(mfrow=c(1,2))
-
