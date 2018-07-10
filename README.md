@@ -1,4 +1,4 @@
-# Methods-Manchester
+# Methods@Manchester Course
 Statistical Analysis of Social Networks
 
 # Summary
