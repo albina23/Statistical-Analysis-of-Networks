@@ -27,7 +27,10 @@ install_package(c(
   "ergm"
 ))
 
-# Author: Johan Koskinen 
+###############################
+# Reshape Function
+###############################
+# Author: Johan Koskinen (2018)
 reshapeRSienaDeps <- function(sim_ans,n) {
   numSimulated <- length(sim_ans$sims)
   mySimNets <- array(0,dim=c(numSimulated,n,n))
@@ -130,3 +133,11 @@ triad.census(mySimNets)
 est_model  <-  sienaAlgorithmCreate( projname = 'est_model')
 sim_ans <- siena07( est_model, data = mydata, effects = myeff)
 summary(sim_ans)
+
+# Estimate   Standard Error   Convergence t-ratio 
+# Rate parameters: 
+# 0       Rate parameter       4.4731  ( 0.6216   )             
+# 1. eval outdegree (density) -1.9154  ( 0.1757   )   -0.0002   
+# 2. eval reciprocity          0.6740  ( 0.2874   )    0.0318   
+# 3. eval transitive triplets  0.3216  ( 0.0609   )    0.0306   
+
