@@ -119,11 +119,14 @@ dev.off()
 model1 <- includeEffects(model1, transRecTrip,cycle3, name="friendship")
 (results1 <- siena07(estimationSettings, data=s50data,
                      effects=model1, returnDeps=TRUE))
+(results1 <- siena07(estimationSettings, data=s50data,
+                     effects=model1, returnDeps=TRUE, prevAns = results1))
 
 gof1.tc <- sienaGOF(results1, verbose=TRUE,
                     varName="friendship", TriadCensus)
 
 gof1.tc
+plot(gof1.tc, scale=TRUE, center=TRUE)
 
 # For the purpose of illustrating the goodness of fit test,
 # we first look at what the goodness of fit tells us.
