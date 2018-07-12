@@ -108,21 +108,6 @@ model1 <- includeEffects(model1, outActSqrt, name="friendship")
 (results1 <- siena07(estimationSettings, data=s50data,
                       effects=model1, returnDeps=TRUE))
 
-# Estimate   Standard   Convergence 
-# Error      t-ratio   
-# 
-# Rate parameters: 
-# 0.1      Rate parameter period 1      7.0624  ( 1.2819   )             
-# 0.2      Rate parameter period 2      5.5573  ( 1.0020   )             
-# 
-# Other parameters: 
-# 1.  eval outdegree (density)         -1.2962  ( 0.4543   )   -0.0564   
-# 2.  eval reciprocity                  2.4271  ( 0.2353   )    0.0026   
-# 3.  eval transitive triplets          0.7395  ( 0.0841   )   -0.0220   
-# 4.  eval outdegree - activity (sqrt) -0.6384  ( 0.2144   )   -0.0417   
-# 
-# Overall maximum convergence ratio:    0.1556 
-
 gof1.od <- sienaGOF(results1, verbose=TRUE, varName="friendship",
                     OutdegreeDistribution)
 gof1.od
@@ -130,6 +115,15 @@ pdf('Rachel.pdf')
 plot(gof1.od)
 dev.off()
 
+## TRANSITIVE RECIPROCATED TRIADS
+model1 <- includeEffects(model1, transRecTrip,cycle3, name="friendship")
+(results1 <- siena07(estimationSettings, data=s50data,
+                     effects=model1, returnDeps=TRUE))
+
+gof1.tc <- sienaGOF(results1, verbose=TRUE,
+                    varName="friendship", TriadCensus)
+
+gof1.tc
 
 # For the purpose of illustrating the goodness of fit test,
 # we first look at what the goodness of fit tells us.
@@ -506,3 +500,4 @@ plot(gof8.tc, scale=TRUE, center=TRUE)
 # These effects jointly give a good representation of the
 # distributions of indegrees, outdegrees, and geodesic distances,
 # and of the triad census.
+
