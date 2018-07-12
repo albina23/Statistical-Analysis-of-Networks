@@ -104,9 +104,31 @@ model1
 # printing the results obtained after the finish of computations on the screen.
 
 # ADD OUT-DEGREEE EFFECT
-model1 <- getEffects(s50data)
-# We add the transitive triplets effects.
-model1 <- includeEffects(model1, transTrip, name="friendship")
+model1 <- includeEffects(model1, outActSqrt, name="friendship")
+(results1 <- siena07(estimationSettings, data=s50data,
+                      effects=model1, returnDeps=TRUE))
+
+# Estimate   Standard   Convergence 
+# Error      t-ratio   
+# 
+# Rate parameters: 
+# 0.1      Rate parameter period 1      7.0624  ( 1.2819   )             
+# 0.2      Rate parameter period 2      5.5573  ( 1.0020   )             
+# 
+# Other parameters: 
+# 1.  eval outdegree (density)         -1.2962  ( 0.4543   )   -0.0564   
+# 2.  eval reciprocity                  2.4271  ( 0.2353   )    0.0026   
+# 3.  eval transitive triplets          0.7395  ( 0.0841   )   -0.0220   
+# 4.  eval outdegree - activity (sqrt) -0.6384  ( 0.2144   )   -0.0417   
+# 
+# Overall maximum convergence ratio:    0.1556 
+
+gof1.od <- sienaGOF(results1, verbose=TRUE, varName="friendship",
+                    OutdegreeDistribution)
+gof1.od
+pdf('Rachel.pdf')
+plot(gof1.od)
+dev.off()
 
 
 # For the purpose of illustrating the goodness of fit test,
@@ -147,7 +169,10 @@ plot(gof1.id)
 gof1.od <- sienaGOF(results1, verbose=TRUE, varName="friendship",
                 OutdegreeDistribution)
 gof1.od
+pdf('john.pdf')
 plot(gof1.od)
+dev.off()
+
 # Here also the p-value and the plot show that the
 # outdegree distribution is well represented.
 
@@ -162,7 +187,7 @@ plot(gof1.od)
 # if you wish to see more, or fewer, levels of the outdegree distribution,
 # you can use this parameter, e.g., as follows:
 gof1.od5 <- sienaGOF(results1, verbose=TRUE, varName="friendship", levls=0:5,
-                OutdegreeDistribution)
+                     GeodesicDistribution)
 gof1.od5
 plot(gof1.od5)
 # The use of the levls parameter in sienaGOF() is an example

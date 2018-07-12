@@ -43,6 +43,7 @@ plot(as.network(m))
 ###############################
 # Describing the network
 ###############################
+
 # Plotting degree distribution:
 plot(table(rowSums(m)), ylab='number',xlab='degree')
 
@@ -65,7 +66,6 @@ gtrans(m) # Transitivty
 
 # Dyad Census
 dyad.census(m)
-
 
 
 
