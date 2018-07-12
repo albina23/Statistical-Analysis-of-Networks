@@ -67,3 +67,5 @@ gtrans(m) # Transitivty
 dyad.census(m)
 
 
+
+
