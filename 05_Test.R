@@ -29,7 +29,9 @@ install_package(c(
 
 # Import the dataset using data.table and remove the rows with incomplete data
 dt = fread("./Data/RBtestdata.csv") # REPLACE WITH OWN FILE PATH
-dt <- na.omit(test_data , cols='From')
+# dataTable.Columns["Marks"].ColumnName = "SubjectMarks"; Use to rename column headers
+
+dt <- na.omit(dt)
 
 # Create an iGraph Object
 g <- graph.data.frame(d = dt, directed = TRUE)
