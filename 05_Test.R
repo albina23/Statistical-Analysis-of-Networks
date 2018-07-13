@@ -39,8 +39,8 @@ g <- graph.data.frame(d = dt, directed = TRUE)
 # Convert the iGraph Object to a regular matrix
 m <- as_adjacency_matrix(g, sparse = FALSE)
 
-# Plot the matrix using as.network from the network package
-plot(as.network(m))
+# Plot the matrix 
+plot (g)
 
 ###############################
 # Describing the network

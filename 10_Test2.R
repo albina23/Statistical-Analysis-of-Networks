@@ -18,8 +18,6 @@ install_package(c(
   "igraph",
   "data.table",
   "RSiena",
-  "network",
-  "sna",
   "ergm"
 ))
 
@@ -29,20 +27,20 @@ install_package(c(
 dt = fread("./Data/loan.csv")
 
 g <- graph.data.frame(d = dt, directed = TRUE)
+g <- delete.vertices(g, degree(g)==0)
+g <- simplify(g, remove.multiple = TRUE, remove.loops = TRUE)
 
 # Convert the iGraph Object to a regular matrix
 m <- as_adjacency_matrix(g, sparse = FALSE)
 
-# Plot the matrix using as.network from the network package
-plot(as.network(m))
+# Plot the graph
+plot (g)
 
 ###############################
 # Describing the network
 ###############################
 # Plotting degree distribution:
-plot(table(rowSums(g)), ylab='number',xlab='degree')
-
-
+plot(table(rowSums(dt)), ylab='number',xlab='degree')
 
 ###############################
 # in/out Degree
